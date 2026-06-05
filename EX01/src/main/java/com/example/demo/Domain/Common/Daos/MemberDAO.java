@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -24,6 +26,10 @@ public class MemberDAO {
     public int insert(MemberDTO dto) throws SQLException {
         Connection conn = dataSource3.getConnection();
         PreparedStatement pstmt = conn.prepareStatement("INSERT INTO tbl_member VALUES (null,?,?,?,?)");
+        pstmt.setString(1,dto.getName());
+        pstmt.setString(2,dto.getEmail());
+        pstmt.setString(3,dto.getPhone());
+        pstmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
     }
 
     // TODO: 회원 전체 조회
