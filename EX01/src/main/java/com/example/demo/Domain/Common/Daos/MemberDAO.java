@@ -30,6 +30,8 @@ public class MemberDAO {
         pstmt.setString(2,dto.getEmail());
         pstmt.setString(3,dto.getPhone());
         pstmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+        int result = pstmt.executeUpdate();
+        return result;
     }
 
     // TODO: 회원 전체 조회
