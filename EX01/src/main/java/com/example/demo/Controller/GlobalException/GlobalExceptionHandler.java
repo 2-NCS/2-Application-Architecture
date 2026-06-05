@@ -19,14 +19,14 @@ public class GlobalExceptionHandler {
         return "global/error1";
     }
     // TODO 2) @ExceptionHandler(ArithmeticException.class)   -> "global/error2" 반환
-    @ExceptionHandler(FileNotFoundException.class)
+    @ExceptionHandler(ArithmeticException.class)
     public String exceptionHandler_2 (Exception e, Model model) {
         model.addAttribute("e",e);
         return "global/error2";
     }
 
     // TODO 3) @ExceptionHandler(Exception.class)             -> "global/error3" 반환
-    @ExceptionHandler(FileNotFoundException.class)
+    @ExceptionHandler(Exception.class)
     public String exceptionHandler_3 (Exception e, Model model) {
         model.addAttribute("e",e);
         return "global/error3";
