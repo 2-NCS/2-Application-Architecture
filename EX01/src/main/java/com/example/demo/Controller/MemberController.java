@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,11 @@ public class MemberController {
     // TODO: DAO 등에서 발생한 예외를 처리할 @ExceptionHandler 메서드를 작성하라.
     //  - (Exception e, Model model) 를 받아 e 메시지를 model 에 담고 "member/error" 뷰 반환
     //  - import : org.springframework.web.bind.annotation.ExceptionHandler
-
+    @ExceptionHandler
+    public String SQLExceptionHandler(Exception e, Model model){
+        model.addAttribute("e",e.getMessage());             //에러 메시지를 받기 위해 Model에 저장
+        return "member/error";          //"member/error"뷰 반환
+    }
     @GetMapping("/add")
     public void memberAdd() {
         log.info("GET /member/add...");
@@ -43,6 +49,7 @@ public class MemberController {
         //     (import org.springframework.validation.FieldError)
         //  2) 검증 통과 시 memberDAO.insert(memberDTO) 호출
         //  3) redirectAttributes.addFlashAttribute("message","회원등록 성공!") 후 "redirect:/member/list" 반환
+
         throw new UnsupportedOperationException("TODO");
     }
 
