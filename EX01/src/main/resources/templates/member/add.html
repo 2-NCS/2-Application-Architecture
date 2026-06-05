@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원등록</title>
+</head>
+<body>
+<h1>PAGE : /member/add</h1>
+
+<form action="/member/add" method="POST">
+
+    <div>
+        <label>이름</label>
+        <input name="name" />&nbsp;&nbsp;<span style="font-size:.8rem;" th:text="${name}"></span>
+    </div>
+    <div>
+        <label>이메일</label>
+        <input name="email" />&nbsp;&nbsp;<span style="font-size:.8rem;" th:text="${email}"></span>
+    </div>
+    <div>
+        <label>연락처</label>
+        <input name="phone" />&nbsp;&nbsp;<span style="font-size:.8rem;" th:text="${phone}"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="저장" />
+    </div>
+</form>
+
+<hr/>
+<a href="/member/list">회원목록</a>
+
+</body>
+</html>

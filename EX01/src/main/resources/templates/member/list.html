@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원목록</title>
+</head>
+<body>
+
+    <h1>PAGE : /member/list </h1>
+
+    <a href="/member/add">회원등록</a>
+    <hr/>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th>CREATEAT</th>
+        </tr>
+        <th:block th:each="dto:${list}">
+            <tr>
+                <td th:text="${dto.id}"></td>
+                <td th:text="${dto.name}"></td>
+                <td th:text="${dto.email}"></td>
+                <td th:text="${dto.phone}"></td>
+                <td th:text="${dto.createAt}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <hr/>
+    <div th:text="${message}"></div>
+</body>
+</html>
