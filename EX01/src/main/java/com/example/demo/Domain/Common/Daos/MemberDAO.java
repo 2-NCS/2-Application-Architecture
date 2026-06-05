@@ -39,6 +39,7 @@ public class MemberDAO {
     //  - ResultSet 을 돌며 MemberDTO.builder() 로 매핑하여 List 로 반환
     public List<MemberDTO> selectAll() throws SQLException {
         Connection conn = dataSource3.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM tbl_member ORDER BY id DESC ");
     }
 
 }
