@@ -38,7 +38,7 @@ public class MemberDAO {
     //  - "select * from tbl_member order by id desc" 실행
     //  - ResultSet 을 돌며 MemberDTO.builder() 로 매핑하여 List 로 반환
     public List<MemberDTO> selectAll() throws SQLException {
-        throw new UnsupportedOperationException("TODO");
+        Connection conn = dataSource3.getConnection();
     }
 
 }
