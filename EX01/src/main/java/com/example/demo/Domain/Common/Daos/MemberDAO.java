@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MemberDAO {
     //  - name / email / phone / createAt(Timestamp.valueOf(LocalDateTime.now())) 바인딩
     //  - executeUpdate() 결과(int) 반환
     public int insert(MemberDTO dto) throws SQLException {
-        throw new UnsupportedOperationException("TODO");
+        Connection conn = dataSource3.getConnection();
     }
 
     // TODO: 회원 전체 조회
