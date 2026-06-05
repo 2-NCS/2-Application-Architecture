@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class MemberDAO {
     //  - executeUpdate() 결과(int) 반환
     public int insert(MemberDTO dto) throws SQLException {
         Connection conn = dataSource3.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement("INSERT INTO tbl_member VALUES (null,?,?,?,?)");
     }
 
     // TODO: 회원 전체 조회
