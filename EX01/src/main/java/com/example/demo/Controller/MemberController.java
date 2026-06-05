@@ -49,8 +49,21 @@ public class MemberController {
         //     (import org.springframework.validation.FieldError)
         //  2) 검증 통과 시 memberDAO.insert(memberDTO) 호출
         //  3) redirectAttributes.addFlashAttribute("message","회원등록 성공!") 후 "redirect:/member/list" 반환
+        if(bindingResult.hasErrors()) {     //// 1. 데이터 검증 오류 발생 시 처리
+        // 발생한 모든 필드 에러를 순회하며 Model에 담아 화면으로 전달 (e.g., id -> "아이디를 입력하세요")
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                model.addAttribute(error.getField(), error.getDefaultMessage());
+            }
+            return "member/add"; // 입력 폼 페이지로 돌아가기 (작성 중이던 데이터 및 에러 메시지 유지)
+        }
+        // 2. 비즈니스 로직 수행 (DB 삽입)
+        int result = memberDAO.insert(memberDTO);
+        // 3. 성공 알림 메시지 전달 및 리다이렉트
+        // addFlashAttribute: 리다이렉트 직후 딱 한 번만 세션을 통해 데이터를 전달함 (새로고침 시 소멸)
+        redirectAttributes.addFlashAttribute("message","회원등록 성공!");
 
-        throw new UnsupportedOperationException("TODO");
+        return "redirect:/member/list"; // 회원 목록 페이지로 리다이렉트
+
     }
 
     @GetMapping("/list")
